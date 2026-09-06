@@ -1,4 +1,4 @@
-name: Deploy Quartz to GitHub Pages
+name: Deploy Quartz site to GitHub Pages
 
 on:
   push:
@@ -58,7 +58,7 @@ jobs:
         run: npx quartz build
 
       - name: Upload site
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
@@ -71,6 +71,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
