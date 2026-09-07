@@ -28,13 +28,13 @@ configuration:
 
     colors:
       lightMode:
-        light: "#faf8f8"
+        light: "#fcfcfa"
         lightgray: "#e5e5e5"
         gray: "#b8b8b8"
         darkgray: "#4e4e4e"
         dark: "#2b2b2b"
         secondary: "#284b63"
-        tertiary: "#84a59d"
+        tertiary: "#345e78"
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#fff23688"
 
@@ -49,9 +49,7 @@ configuration:
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#b3aa0288"
 
-
 plugins:
-
   - source: "@quartz-community/created-modified-date"
     enabled: true
     options:
@@ -86,8 +84,9 @@ plugins:
     enabled: true
     order: 50
     layout:
-      position: right
-      priority: 30
+      position: beforeBody
+      priority: 40
+      condition: has-toc
 
   - source: "@quartz-community/crawl-links"
     enabled: true
@@ -130,7 +129,6 @@ plugins:
       theme: tokyo-night
       mode: both
 
-
   # Publication filtering:
   # Require explicit "publish: true".
   - source: "@quartz-community/remove-draft"
@@ -138,7 +136,6 @@ plugins:
 
   - source: "@quartz-community/explicit-publish"
     enabled: true
-
 
   - source: "@quartz-community/unlisted-pages"
     enabled: true
@@ -154,7 +151,6 @@ plugins:
       position: afterBody
       priority: 50
       display: all
-
 
   - source: "@quartz-community/alias-redirects"
     enabled: true
@@ -174,7 +170,6 @@ plugins:
   - source: "@quartz-community/cname"
     enabled: true
 
-
   # Page generators
   - source: "@quartz-community/canvas-page"
     enabled: true
@@ -193,7 +188,6 @@ plugins:
     options: {}
     order: 50
 
-
   # Sidebar / navigation components
   - source: "@quartz-community/explorer"
     enabled: false
@@ -210,7 +204,7 @@ plugins:
   - source: "@quartz-community/search"
     enabled: true
     layout:
-      position: left
+      position: header
       priority: 20
       group: toolbar
       groupOptions:
@@ -221,7 +215,6 @@ plugins:
     layout:
       position: right
       priority: 50
-
 
   # Content header
   - source: "@quartz-community/article-title"
@@ -235,6 +228,7 @@ plugins:
     layout:
       position: beforeBody
       priority: 20
+      condition: not-index
 
   - source: "@quartz-community/tag-list"
     enabled: false
@@ -249,10 +243,9 @@ plugins:
       priority: 5
       condition: not-index
 
-
   # Site header / toolbar
   - source: "@quartz-community/page-title"
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 10
@@ -260,17 +253,16 @@ plugins:
   - source: "@quartz-community/darkmode"
     enabled: true
     layout:
-      position: left
+      position: header
       priority: 30
       group: toolbar
 
   - source: "@quartz-community/reader-mode"
     enabled: true
     layout:
-      position: left
+      position: header
       priority: 35
       group: toolbar
-
 
   # Comments OFF for now
   - source: "@quartz-community/comments"
@@ -282,7 +274,6 @@ plugins:
       position: afterBody
       priority: 10
 
-
   # Footer
   - source: "@quartz-community/footer"
     enabled: true
@@ -293,10 +284,9 @@ plugins:
       position: footer
       priority: 50
 
-
   # Recent writing/posts
   - source: "@quartz-community/recent-notes"
-    enabled: true
+    enabled: false
     options:
       title: "Recent Writing"
       limit: 5
@@ -306,7 +296,6 @@ plugins:
       position: left
       priority: 25
 
-
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
@@ -315,7 +304,6 @@ plugins:
       position: left
       priority: 25
       display: mobile-only
-
 
   # Only expose selected frontmatter properties
   - source: "@quartz-community/note-properties"
@@ -327,7 +315,7 @@ plugins:
         - tags
         - aliases
       excludedProperties: []
-      hidePropertiesView: false
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
     order: 5
@@ -335,7 +323,6 @@ plugins:
       position: beforeBody
       priority: 15
       display: all
-
 
 layout:
   groups:

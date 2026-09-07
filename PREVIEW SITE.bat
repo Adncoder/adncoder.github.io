@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-cd /d "C:\GitHub\Adncoder.github.io"
+cd /d "%~dp0"
 
 echo.
 echo ========================================
@@ -10,7 +10,7 @@ echo ========================================
 echo.
 
 echo [1/2] Syncing publishable Obsidian writing...
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\publish-writing.ps1"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\publish-writing.ps1" -RepoRoot "%CD%"
 
 if errorlevel 1 (
     echo.

@@ -124,6 +124,8 @@ function Get-PublicFrontmatter {
     if (-not $sawPublish) {
         $result.Add("publish: true")
     }
+    
+    $result.Add("generated-by: publish-writing")
 
     return ($result -join "`r`n")
 }
@@ -233,14 +235,28 @@ foreach ($file in $MarkdownFiles) {
     $destinationFull = Join-Path $RepoRoot $destinationRelative
 
 
-    # Safety:
-    # Never overwrite a manually-created public file unless this script
-    # already owns it through the manifest.
-    if (
-        (Test-Path $destinationFull) -and
-        ($PreviousFiles -notcontains $destinationPortable)
-    ) {
-        throw @"
+# Safety:
+# Allow overwrite if either:
+# 1. the manifest says this script owns the file, OR
+# 2. the file itself contains our generated-by marker.
+
+$OwnedByMarker = $false
+
+if (Test-Path $destinationFull) {
+    $existingText = [System.IO.File]::ReadAllText($destinationFull)
+
+    $OwnedByMarker = [regex]::IsMatch(
+        $existingText,
+        '(?im)^generated-by:[ \t]*publish-writing[ \t]*$'
+    )
+}
+
+if (
+    (Test-Path $destinationFull) -and
+    ($PreviousFiles -notcontains $destinationPortable) -and
+    (-not $OwnedByMarker)
+) {
+    throw @"
 Refusing to overwrite an unmanaged website file:
 
 $destinationFull
@@ -248,7 +264,7 @@ $destinationFull
 This file already exists but was not created by publish-writing.ps1.
 Move/delete it manually if you want the publishing script to own this path.
 "@
-    }
+}
 
 
     $destinationDirectory = Split-Path $destinationFull -Parent
