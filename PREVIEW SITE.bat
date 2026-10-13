@@ -20,6 +20,13 @@ if errorlevel 1 (
 )
 
 echo.
+node "%~dp0scripts\publish-favorites.mjs" --repo "%CD%"
+if errorlevel 1 (
+    echo ERROR: Favorites sync failed. Nothing has been pushed.
+    pause
+    exit /b 1
+)
+
 echo [2/2] Starting Quartz preview...
 echo.
 echo Open:

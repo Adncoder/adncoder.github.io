@@ -44,6 +44,20 @@ export const FullWidthFrame: PageFrame = {
               >
                 Writing
               </a>
+              {componentData.allFiles.some(
+                (file) =>
+                  file.slug === "favorites" &&
+                  file.frontmatter?.publish === true &&
+                  file.unlisted !== true,
+              ) && (
+                <a
+                  class="internal"
+                  href={`${root}/favorites`}
+                  aria-current={componentData.fileData.slug === "favorites" ? "page" : undefined}
+                >
+                  Favorites
+                </a>
+              )}
             </nav>
             <Header {...componentData}>
               {header.map((HeaderComponent) => (

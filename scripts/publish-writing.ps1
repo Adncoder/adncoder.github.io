@@ -50,12 +50,12 @@ function Test-IsPublishableWriting {
 
     $isWriting = [regex]::IsMatch(
         $Frontmatter,
-        '(?im)^type:[ \t]*writing[ \t]*$'
+        '(?im)^type:[ \t]*writing[ \t]*\r?$'
     )
 
     $isPublished = [regex]::IsMatch(
         $Frontmatter,
-        '(?im)^publish:[ \t]*true[ \t]*$'
+        '(?im)^publish:[ \t]*true[ \t]*\r?$'
     )
 
     return ($isWriting -and $isPublished)
@@ -159,9 +159,10 @@ if (Test-Path $ManifestPath) {
     $manifestText = [System.IO.File]::ReadAllText($ManifestPath)
 
     if (-not [string]::IsNullOrWhiteSpace($manifestText)) {
-        $PreviousFiles = @(
-            ConvertFrom-Json -InputObject $manifestText
-        )
+        # Windows PowerShell 5.1 emits the JSON array as one pipeline object.
+        # Decode first so @() wraps its entries rather than nesting the array.
+        $decodedManifest = ConvertFrom-Json -InputObject $manifestText
+        $PreviousFiles = @($decodedManifest)
     }
 }
 
@@ -247,7 +248,7 @@ if (Test-Path $destinationFull) {
 
     $OwnedByMarker = [regex]::IsMatch(
         $existingText,
-        '(?im)^generated-by:[ \t]*publish-writing[ \t]*$'
+        '(?im)^generated-by:[ \t]*publish-writing[ \t]*\r?$'
     )
 }
 

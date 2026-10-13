@@ -24,3 +24,26 @@ Setting `publish: false` removes the script-managed website copy on the next syn
 - The Obsidian source path remains in scripts/publish-writing.ps1. If the vault moves, update that path.
 
 GitHub Pages remains the hosting destination. The writing notebooks, workflow statuses, and source notes are not altered by the website design.
+
+## All-Time Favorites
+
+Edit `Andrew/Life/Watch & Reading List/All-Time Favorites.md` in Obsidian.
+This is a separate `type: collection` note, so it does not enter the writing lists.
+It starts with `publish: false`. Complete the entries and set `publish: true` when ready.
+Both existing shortcuts sync this one note in addition to your selected writing.
+The public page is `/favorites`; the Favorites navigation link appears only when the page is published.
+
+The note contains Books, Songs, Games, Movies, Art, and Other Media sections.
+Duplicate an entry to add a favorite, and delete categories you are not ready to share.
+Book quotations use ordinary Markdown blockquotes, with your own reflection beneath.
+Paste an official Spotify/YouTube embed for a song or gameplay clip. YouTube embeds
+can use `start` and `end` parameters in seconds; players do not autoplay by default.
+Music-provider playback and excerpt availability depend on that provider.
+For art, use a hosted image with descriptive alt text and a source credit/link.
+Local attachments are not copied automatically.
+
+Obsidian comments and HTML comments are removed before the note enters the public
+repository. All other body content becomes public. Private media databases are not
+scanned or exported. Turning `publish` off removes only the managed favorites page
+on the next sync; run Publish to update the live site. Missing source notes, unfinished
+comments, and conflicts with manually created website files stop the sync.

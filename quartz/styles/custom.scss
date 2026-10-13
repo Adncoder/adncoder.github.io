@@ -275,3 +275,63 @@ input:focus-visible {
     animation-duration: 0.01ms !important;
   }
 }
+
+// Favorites are authored as ordinary Markdown in a single Obsidian note.
+.page[data-frame="full-width"] main:has(article.favorites) {
+  max-width: 48rem;
+}
+article.favorites {
+  h2 {
+    margin-top: 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--lightgray);
+    font-family: var(--bodyFont);
+    font-size: 1rem;
+  }
+  h3 {
+    margin-top: 2rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 1.75rem;
+  }
+  iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 0.5rem;
+    margin-block: 1.5rem;
+  }
+  iframe.audio-embed,
+  iframe[src*="open.spotify.com"] {
+    height: 152px;
+    aspect-ratio: auto;
+  }
+  audio,
+  video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-block: 1.5rem;
+  }
+  img {
+    display: block;
+    max-height: 70vh;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 1.5rem auto;
+  }
+  blockquote {
+    font-size: 1.25rem;
+    line-height: 1.7;
+  }
+}
+@media (max-width: 430px) {
+  .site-masthead nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
