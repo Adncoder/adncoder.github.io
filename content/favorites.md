@@ -19,15 +19,7 @@ generated-by: publish-favorites
 ## Songs
 
 ### Reverie — Wuthering Waves
-
-<iframe title="Reverie — Wuthering Waves: 30-second preview" src="https://www.youtube-nocookie.com/embed/f3zaLClYRpc?start=0&amp;end=30" width="560" height="315" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
-
-[Listen to the full video on YouTube](https://www.youtube.com/watch?v=f3zaLClYRpc)
-
-
-
-
-
+<audio controls preload="none" aria-label="reverie" src="/static/favorites-audio/c89b2d7bd726ab52d1a0d188802ac47823febc6837530f5ead915ea63642ec0a.mp3"></audio>
 ### We Are One — Thomas Bergersen
 <audio controls preload="none" aria-label="we-are-one" src="/static/favorites-audio/9e507d71cecd3ee76ad1c439f747e2a5d29e0f7cb92d6663c2e5bf7f8143cad6.mp3"></audio>
 ### Welcome to the Black Parade — My Chemical Romance
