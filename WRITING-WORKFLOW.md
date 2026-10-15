@@ -40,10 +40,34 @@ Paste an official Spotify/YouTube embed for a song or gameplay clip. YouTube emb
 can use `start` and `end` parameters in seconds; players do not autoplay by default.
 Music-provider playback and excerpt availability depend on that provider.
 For art, use a hosted image with descriptive alt text and a source credit/link.
-Local attachments are not copied automatically.
+Audio clips dragged into this note are copied automatically. Local images and other
+attachments still need hosted URLs.
+
+### Adding a favorite audio moment
+
+1. Prepare a short MP3 of the passage you want readers to hear. In Audacity, select
+   the passage and export the current selection as MP3. Give it a recognizable,
+   unique name such as `reverie-favorite.mp3`.
+2. Open All-Time Favorites in Obsidian's editing view and drag the file from File
+   Explorer onto a blank line beneath the song title. Obsidian copies it into your
+   configured attachment folder and inserts `![[reverie-favorite.mp3]]`.
+3. Run PREVIEW SITE.bat, check `/favorites`, then run PUBLISH SITE.bat as usual.
+   No HTML or manual copy into the website repository is needed.
+
+The publisher supports MP3, M4A, WAV, OGG, FLAC, AAC and WebM audio, up to 25 MB per
+file; MP3 is the simplest choice for short clips. It copies the entire attached
+file, so trim the file first if you only want to share an excerpt. Only referenced
+audio outside private comments and code examples is exported. It accepts Obsidian
+audio embeds and Markdown attachment embeds, resolving files beside the note, at
+the vault root, or in Obsidian's configured attachment folder. For other locations
+use the full vault-relative path. Missing or ambiguous files stop publication.
+
+Removing an audio embed or turning publish off removes its managed website audio
+copy on the next sync. It does not delete the Obsidian attachment or earlier Git
+history. Preview must be restarted after editing the note or replacing a clip.
 
 Obsidian comments and HTML comments are removed before the note enters the public
 repository. All other body content becomes public. Private media databases are not
-scanned or exported. Turning `publish` off removes only the managed favorites page
+scanned or exported. Turning `publish` off removes the managed favorites page and audio
 on the next sync; run Publish to update the live site. Missing source notes, unfinished
 comments, and conflicts with manually created website files stop the sync.

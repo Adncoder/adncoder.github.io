@@ -2,6 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import YAML from "yaml"
+import { prepareAudio, syncAudio } from "./favorites-audio.mjs"
 
 const marker = "publish-favorites"
 export const defaultSource =
@@ -21,10 +22,6 @@ function publicBody(body) {
   let text = body.replace(/%%[\s\S]*?%%/g, "").replace(/<!--[\s\S]*?-->/g, "")
   if (text.includes("%%") || text.includes("<!--"))
     throw new Error("Close the unfinished comment in your favorites note before publishing.")
-  if (/!\[\[/.test(text))
-    throw new Error(
-      "Favorites attachments are not copied automatically. Use a hosted image or media embed instead of an Obsidian attachment.",
-    )
   return text.trim() + "\n"
 }
 
@@ -47,12 +44,13 @@ export function syncFavorites({
       throw new Error("Refusing to overwrite an unmanaged content/favorites.md.")
   }
   if (metadata.publish !== true) {
+    syncAudio(path.resolve(repoRoot), new Map())
     if (exists) fs.unlinkSync(destination)
     return { status: exists ? "removed" : "draft", destination }
   }
   if (metadata.type !== "collection")
     throw new Error("Favorites must have type: collection and publish: true.")
-  const cleanBody = publicBody(body)
+  const { text: cleanBody, assets } = prepareAudio(publicBody(body), source)
   if (!cleanBody.trim()) throw new Error("Add favorites before publishing the collection.")
   const properties = {
     title: typeof metadata.title === "string" ? metadata.title : "All-Time Favorites",
@@ -63,6 +61,7 @@ export function syncFavorites({
     "generated-by": marker,
   }
   const output = `---\n${YAML.stringify(properties)}---\n\n${cleanBody}`
+  syncAudio(path.resolve(repoRoot), assets)
   if (exists && fs.readFileSync(destination, "utf8") === output)
     return { status: "unchanged", destination }
   fs.mkdirSync(content, { recursive: true })
