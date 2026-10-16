@@ -40,6 +40,10 @@ body {
   main:focus {
     outline: none;
   }
+  // The plugin's flex-based collapse assumes a sidebar; this frame uses normal flow.
+  .toc > .toc-content.collapsed {
+    display: none;
+  }
   article {
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1.125rem;
