@@ -62,6 +62,13 @@ generated-by: publish-favorites
 [Listen to the playlist on YouTube](https://www.youtube.com/watch?v=GdzrrWA8e7A&list=PLBsm_SagFMmefZzqPX4iD8FxlbQMI5eHs)
 
 I used to listen to this playlist hundreds of times for chess matches.
+### Dimrain 47 — At the Speed of Light
+
+<audio controls preload="none" aria-label="speed-of-light" src="/static/favorites-audio/a0e25de36f646ecb2af2e9294f5d6e0e31fea99101005dfbef49cb831e5b04c2.mp3"></audio>
+### Seycara Orchestral — Everlasting Summer
+<audio controls preload="none" aria-label="everlasting-summer" src="/static/favorites-audio/b99becbe5df9c7d76ddff7df6b2088bc3ab243cf60df9eebf111b9c807a2dc5b.mp3"></audio>
+### Team Salvato — Your Reality
+<audio controls preload="none" aria-label="your-reality" src="/static/favorites-audio/b9c97b5c2d2419c5c1a0e0964b62e9c5b7ad5f288e12dd31718ed0a3356dd26c.mp3"></audio>
 ## Games
 
 ### Dancing Line
@@ -83,10 +90,10 @@ I used to listen to this playlist hundreds of times for chess matches.
 
 
 
-## Movies
+## Movies/Videos
 
 
-
+<iframe title="Metal Gear Solid 2 Speech" src="https://www.youtube-nocookie.com/embed/C31XYgr8gp0?start=0&amp;end=462" width="560" height="315" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
 ## Art
 
 ### The Creation of Adam — Michelangelo
